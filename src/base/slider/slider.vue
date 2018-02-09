@@ -104,6 +104,9 @@
         if (this.loop) {
           pageIndex += 1
         }
+        if(pageIndex === this.children.length){
+          pageIndex = 0
+        }
         this.timer = setTimeout(() => {
           this.sliders.goToPage(pageIndex, 0, 400)
         }, this.interval)

@@ -32,6 +32,7 @@
   import Scroll from 'base/scroll/scroll'
   import Loading from 'base/loading/loading'
   import SongList from 'base/song-list/song-list'
+  import {mapActions} from 'vuex'
 
   import {prefixStyle} from 'common/js/dom'
   const transform = prefixStyle('transform')
@@ -74,10 +75,10 @@
     },
     methods: {
       selectItem(item, index) {
-//        this.selectPlay({
-//          list: this.songs,
-//          index
-//        })
+        this.selectPlay({
+          list: this.songs,
+          index
+        })
       },
       scroll(pos){
         this.scrollY = pos.y
@@ -86,7 +87,10 @@
         this.$router.push({
           path: '/singer'
         })
-      }
+      },
+      ...mapActions([
+      	'selectPlay'
+      ])
     },
     watch: {
       scrollY(newY) {

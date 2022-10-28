@@ -8,7 +8,7 @@
     >
       <div class="normal-player" v-show="fullScreen">
         <div class="background">
-          <img width="100%" height="100%" :src="currentSong.image">
+          <img width="100%" height="100%" :src="currentSong.image || defaultIcon">
         </div>
         <div class="top">
           <div class="back" @click="back">
@@ -74,7 +74,7 @@
     <transition name="mini">
       <div class="mini-player" v-show="!fullScreen">
         <div class="icon" @click="open">
-          <img width="40" height="40" :src="currentSong.image" :class="cdCls">
+          <img width="40" height="40" :src="currentSong.image || defaultIcon" :class="cdCls">
         </div>
         <div class="text">
           <h2 class="name" v-html="currentSong.name"></h2>
@@ -100,6 +100,11 @@
   const transform = prefixStyle('transform')
 
   export default {
+    data() {
+      return {
+        defaultIcon: 'https://y.gtimg.cn/music/photo_new/T001R300x300M0000025NhlN2yWrP4.jpg?max_age=2592000'
+      }
+    },
     computed: {
     	playIcon() {
     		return this.playing ? 'icon-pause' : 'icon-play'
